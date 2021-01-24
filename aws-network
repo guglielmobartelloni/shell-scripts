@@ -1,0 +1,4 @@
+#!/bin/sh
+
+expr $(aws ecs list-tasks --cluster cluster-network | jq '.taskArns' | wc -l)-2 |
+	awk -F'-' '{print "[🖥️ " $1-$2"]"}'

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+#Script che mostra lo stato delle landing
+
+aws elasticbeanstalk describe-environment-health --environment-name NetworkLanding --attribute-names All |
+	jq '.HealthStatus' |
+	sed 's/"//g' |
+	awk '{print "[🛬" $1 " ] "}'
